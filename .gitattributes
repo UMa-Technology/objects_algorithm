@@ -1,0 +1,4 @@
+# AA+ is vendored byte-identical to the author's release (CRLF line endings, a few
+# Latin-1 / Windows-1252 bytes in comments). Its license only allows redistributing
+# source as released, so never let git convert line endings here.
+flutter/objects_algorithm/src/aaplus/** -text

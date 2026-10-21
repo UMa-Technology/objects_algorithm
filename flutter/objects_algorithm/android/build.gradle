@@ -1,0 +1,61 @@
+// Android build entry point. AGP compiles the C++ sources under ../src via the NDK.
+
+group = "com.umatech.objects_algorithm"
+version = "0.2.0"
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Matches the host app's verified AGP version (8.11.2).
+        // The template default is 9.0.1, which requires Gradle 9 and breaks hosts on Gradle 8.14.
+        classpath("com.android.tools.build:gradle:8.11.2")
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: "com.android.library"
+
+android {
+    namespace = "com.umatech.objects_algorithm"
+    compileSdk = 36
+
+    // Follow the host app's NDK version; the plugin doesn't pin one.
+    ndkVersion = android.ndkVersion
+
+    defaultConfig {
+    // Keep this low: a plugin minSdk above the host's breaks the host's manifest merge.
+        minSdk = 21
+
+        externalNativeBuild {
+            cmake {
+                // Android 15+ requires 16 KB page size support. Use the official NDK switch,
+                // as in the host app's verified configuration (supported since NDK r27,
+                // default since r28; set explicitly here for older NDKs).
+                arguments "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
+            }
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+
+    // Compile rules are shared with Windows, see ../src/CMakeLists.txt.
+    // AGP packages the resulting libobjects_algorithm.so into the host APK automatically;
+    // ABIs are decided by the host app's abiFilters.
+    externalNativeBuild {
+        cmake {
+            path = "../src/CMakeLists.txt"
+        }
+    }
+}

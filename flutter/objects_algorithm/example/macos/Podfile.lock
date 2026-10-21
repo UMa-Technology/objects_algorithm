@@ -1,0 +1,22 @@
+PODS:
+  - FlutterMacOS (1.0.0)
+  - objects_algorithm (0.1.0):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - objects_algorithm (from `Flutter/ephemeral/.symlinks/plugins/objects_algorithm/macos`)
+
+EXTERNAL SOURCES:
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  objects_algorithm:
+    :path: Flutter/ephemeral/.symlinks/plugins/objects_algorithm/macos
+
+SPEC CHECKSUMS:
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  objects_algorithm: 68a046a3e08a2c4f1eacdbb98cf294903d15757d
+
+PODFILE CHECKSUM: 5b6685a3196c2454be517ffff46c6455f0bfcfe9
+
+COCOAPODS: 1.16.2

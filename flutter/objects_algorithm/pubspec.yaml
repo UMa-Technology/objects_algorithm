@@ -1,0 +1,37 @@
+name: objects_algorithm
+description: "Astronomy algorithms based on AA+: coordinate transformations, positions of the sun, moon, planets and comets, and rise/transit/set times."
+version: 0.2.0
+homepage: https://github.com/UMa-Technology/objects_algorithm
+
+environment:
+  sdk: ">=3.4.4 <4.0.0"
+  flutter: ">=3.3.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  ffi: ^2.1.0
+  timezone: ^0.10.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        ffiPlugin: true
+      ios:
+        # ffiPlugin compiles and bundles the C++ sources under ../src.
+        # pluginClass exists only so Flutter generates a GeneratedPluginRegistrant,
+        # which gives the Apple-side keepalive chain a starting reference from the host,
+        # see ios/Classes/ObjectsAlgorithmPlugin.m.
+        ffiPlugin: true
+        pluginClass: ObjectsAlgorithmPlugin
+      macos:
+        ffiPlugin: true
+        pluginClass: ObjectsAlgorithmPlugin
+      windows:
+        ffiPlugin: true
